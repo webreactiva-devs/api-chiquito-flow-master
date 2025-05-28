@@ -76,6 +76,45 @@ paths:
                 type: "phrase"
                 content: "¡Fistro duodenal!"
                 category: "classic"
+  /api/categories:
+    get:
+      summary: Get all joke categories
+      description: Returns a list of all available joke categories with the count of jokes in each category
+      tags:
+        - Categories
+      responses:
+        '200':
+          description: List of categories retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
+              example:
+                categories:
+                  - name: "clásico"
+                    count: 10
+                  - name: "crisis"
+                    count: 1
+                  - name: "comparaciones"
+                    count: 2
+                  - name: "absurdo"
+                    count: 2
+                  - name: "familia"
+                    count: 2
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Failed to retrieve categories, fistro"
+
   /api/jokes/{id}:
     get:
       summary: Get a joke by ID
@@ -155,6 +194,23 @@ components:
           description: Descriptive error message
           example: "Joke not found, fistro"
 
+    Category:
+      type: object
+      required:
+        - name
+        - count
+      properties:
+        name:
+          type: string
+          description: Name of the joke category
+          example: "classic"
+        count:
+          type: integer
+          description: Number of jokes in this category
+          example: 10
+
 tags:
   - name: Jokes
     description: Operations related to managing and retrieving jokes from Chiquito de la Calzada
+  - name: Categories
+    description: Operations related to retrieving joke categories

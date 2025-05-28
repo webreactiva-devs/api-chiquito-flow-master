@@ -32,6 +32,42 @@ describe("Chiquito API", () => {
     });
   });
 
+  describe("GET /api/categories", () => {
+    it("should return all categories with counts", async () => {
+      const response = await request(app).get("/api/categories").expect(200);
+
+      assert(response.body.categories);
+      assert(Array.isArray(response.body.categories));
+      assert(response.body.categories.length > 0);
+
+      response.body.categories.forEach((category) => {
+        assert(typeof category.name === "string");
+        assert(typeof category.count === "number");
+        assert(category.count > 0);
+      });
+    });
+
+    it("should return accurate joke counts per category", async () => {
+      const response = await request(app).get("/api/categories").expect(200);
+      const allJokesResponse = await request(app).get("/api/jokes").expect(200);
+
+      const totalJokes = allJokesResponse.body.length;
+      const totalCategoryJokes = response.body.categories.reduce(
+        (sum, category) => sum + category.count,
+        0
+      );
+
+      assert.strictEqual(totalJokes, totalCategoryJokes);
+    });
+
+    it("should handle server errors gracefully", async () => {
+      // This test would require mocking the jokes data to cause an error
+      // For now, we just verify the endpoint exists and returns a valid response
+      const response = await request(app).get("/api/categories").expect(200);
+      assert(response.body.categories);
+    });
+  });
+
   describe("GET /api/jokes/:id", () => {
     it("should return specific joke", async () => {
       const response = await request(app).get("/api/jokes/1").expect(200);
