@@ -1,31 +1,46 @@
 ---
 name: Feature request
-about: Suggest an idea for the Chiquito API
-title: '[FEATURE] '
+about: Suggest a feature for the project
+title: '[FEATURE] Brief descriptive title of the feature'
 labels: enhancement
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Description**: 
+As a [type of user], I need [what functionality] so that [benefit/reason].
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+Provide additional context about why this feature is needed and how it fits into the overall project goals.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Acceptance Criteria**: 
+- [ ] Specific, measurable requirement 1
+- [ ] Specific, measurable requirement 2
+- [ ] Specific, measurable requirement 3
+- [ ] Documentation updated accordingly
+- [ ] Error handling implemented where applicable
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Test Cases**: 
+- [ ] Test case covering main functionality
+- [ ] Test case covering edge cases
+- [ ] Test case covering error scenarios
+- [ ] Integration tests if applicable
 
-**Implementation considerations**
-- Will this feature require changes to the data structure?
-- Should this be a new endpoint or modify an existing one?
-- Any performance considerations?
+**Implementation Notes**:
+- Any technical considerations or constraints
+- Dependencies on other features or systems
+- Performance requirements or considerations
+- Security implications if any
 
-**Code Style Reminder**
-Please ensure any code examples follow our guidelines:
-- No inline comments
-- All code and descriptions in English
-- Self-documenting code
+**Definition of Done**:
+- [ ] Code implemented and reviewed
+- [ ] Tests written and passing
+- [ ] Documentation updated
+- [ ] Feature tested in development environment
+- [ ] Ready for deployment
+
+**Additional Context**:
+Add any mockups, diagrams, examples, or references that help explain the feature request.
+
+**Priority**: [High/Medium/Low]
+
+**Estimated Effort**: [Small/Medium/Large] or [Story Points if using Scrum]

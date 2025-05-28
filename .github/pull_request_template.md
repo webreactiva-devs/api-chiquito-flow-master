@@ -2,7 +2,7 @@
 
 Please include a summary of the changes and which issue is fixed. Please also include relevant motivation and context.
 
-Fixes # (issue)
+Fixes #{issue}
 
 ## Type of change
 
@@ -24,24 +24,12 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 ## Checklist:
 
 - [ ] My code follows the style guidelines of this project
-- [ ] I have performed a self-review of my own code
 - [ ] I have made corresponding changes to the documentation
-- [ ] My changes generate no new warnings
+- [ ] I have added the corresponding labels
+- [ ] I have assigned this PR to a team member for review
 - [ ] I have added tests that prove my fix is effective or that my feature works
 - [ ] New and existing unit tests pass locally with my changes
 
-## Code Style Compliance:
-
-- [ ] **No inline comments used** - Code is self-documenting
-- [ ] **All code written in English** - Variables, functions, and descriptions
-- [ ] **Clean and readable code** - Proper naming conventions followed
-
-## API Changes (if applicable):
-
-- [ ] No breaking changes to existing endpoints
-- [ ] New endpoints follow RESTful conventions
-- [ ] Response format is consistent with existing endpoints
-- [ ] Error handling follows project standards
 
 ## Additional Notes:
 
