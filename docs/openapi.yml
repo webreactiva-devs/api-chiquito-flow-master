@@ -207,7 +207,7 @@ components:
         count:
           type: integer
           description: Number of jokes in this category
-          example: 10
+          example: 5
 
 tags:
   - name: Jokes
