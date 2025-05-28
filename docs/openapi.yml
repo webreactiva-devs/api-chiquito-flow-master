@@ -1,0 +1,160 @@
+openapi: 3.0.4
+info:
+  title: Chiquito Flow API
+  description: API to get phrases and jokes from the legendary Chiquito de la Calzada
+  version: 1.0.0
+  contact:
+    name: Chiquito Flow API
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+  - url: https://api-chiquito-flow.com
+    description: Production server
+
+paths:
+  /api/jokes:
+    get:
+      summary: Get all jokes
+      description: Returns a list of all available jokes, with an option to filter by category
+      tags:
+        - Jokes
+      parameters:
+        - name: category
+          in: query
+          description: Filter jokes by category
+          required: false
+          schema:
+            type: string
+            example: "classic"
+      responses:
+        '200':
+          description: List of jokes retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Joke'
+              examples:
+                all_jokes:
+                  summary: All jokes
+                  value:
+                    - id: 1
+                      type: "phrase"
+                      content: "¡Hasta luego, Lucas!"
+                      category: "classic"
+                    - id: 2
+                      type: "phrase"
+                      content: "¡Te das cuen!"
+                      category: "classic"
+                filtered_by_category:
+                  summary: Jokes filtered by category
+                  value:
+                    - id: 1
+                      type: "phrase"
+                      content: "¡Hasta luego, Lucas!"
+                      category: "classic"
+
+  /api/jokes/random:
+    get:
+      summary: Get a random joke
+      description: Returns a randomly selected joke from the entire collection
+      tags:
+        - Jokes
+      responses:
+        '200':
+          description: Random joke retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Joke'
+              example:
+                id: 5
+                type: "phrase"
+                content: "¡Fistro duodenal!"
+                category: "classic"
+  /api/jokes/{id}:
+    get:
+      summary: Get a joke by ID
+      description: Returns a specific joke based on its unique ID
+      tags:
+        - Jokes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique identifier of the joke
+          schema:
+            type: integer
+            minimum: 1
+            example: 1
+      responses:
+        '200':
+          description: Joke found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Joke'
+              example:
+                id: 1
+                type: "phrase"
+                content: "¡Hasta luego, Lucas!"
+                category: "classic"
+        '404':
+          description: Joke not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: "Joke not found, fistro"
+
+components:
+  schemas:
+    Joke:
+      type: object
+      required:
+        - id
+        - type
+        - content
+        - category
+      properties:
+        id:
+          type: integer
+          description: Unique joke identifier
+          minimum: 1
+          example: 1
+        type:
+          type: string
+          description: Type of joke content
+          example: "phrase"
+        content:
+          type: string
+          description: Joke or phrase content
+          example: "¡Hasta luego, Lucas!"
+        category:
+          type: string
+          description: Category to which the joke belongs
+          example: "classic"
+      example:
+        id: 1
+        type: "phrase"
+        content: "¡Hasta luego, Lucas!"
+        category: "classic"
+
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Descriptive error message
+          example: "Joke not found, fistro"
+
+tags:
+  - name: Jokes
+    description: Operations related to managing and retrieving jokes from Chiquito de la Calzada
