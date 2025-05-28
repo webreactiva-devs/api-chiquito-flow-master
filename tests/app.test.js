@@ -42,7 +42,7 @@ describe("Chiquito API", () => {
     it("should return 404 for non-existent ID", async () => {
       const response = await request(app).get("/api/jokes/999").expect(404);
 
-      assert(response.body.error.includes("duodenal"));
+      assert(response.body.error.includes("fistro"));
     });
   });
 });
