@@ -8,7 +8,7 @@ A REST API that serves jokes and expressions from the legendary Spanish comedian
 - 🎲 Get random jokes
 - 📂 Browse jokes by categories
 - 🔍 Find specific jokes by ID
-- 💾 JSON file-based data storage
+- 💾 JSON file data storage
 - 🧪 Comprehensive test suite
 - 📚 OpenAPI documentation
 
