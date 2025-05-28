@@ -30,6 +30,27 @@ app.get("/api/jokes/random", (req, res) => {
   res.json(randomJoke);
 });
 
+app.get("/api/categories", (req, res) => {
+  try {
+    const categoryCountMap = jokes.reduce((acc, joke) => {
+      const category = joke.category;
+      acc[category] = (acc[category] || 0) + 1;
+      return acc;
+    }, {});
+
+    const categories = Object.entries(categoryCountMap).map(
+      ([name, count]) => ({
+        name,
+        count,
+      })
+    );
+
+    res.json({ categories });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to retrieve categories, fistro" });
+  }
+});
+
 app.get("/api/jokes/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const joke = jokes.find((j) => j.id === id);
