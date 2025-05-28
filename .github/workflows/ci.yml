@@ -9,7 +9,7 @@ on:
 
 jobs:
   test:
-    name: Test & Lint
+    name: Test
     runs-on: ubuntu-latest
 
     steps:

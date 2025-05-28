@@ -11,6 +11,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const log = `${new Date().toISOString()} - ${req.method} ${req.url}\n`;
+
+  if (process.env.NODE_ENV !== "production") {
+    console.log(log.trim());
+  }
+
+  next();
+});
+
+app.get("/health", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "Fistro pecador de la pradera",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 const dataPath = join(__dirname, "../data/chiquito.json");
 const { jokes } = JSON.parse(readFileSync(dataPath, "utf8"));
 
