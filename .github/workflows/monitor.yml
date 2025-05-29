@@ -1,8 +1,8 @@
 name: Production Monitoring
 
 on:
-  schedule:
-    - cron: '*/15 * * * *'
+#  schedule:
+#    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -29,15 +29,15 @@ jobs:
         if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.ethereal.email
-          server_port: 587
-          username: brooklyn.feeney@ethereal.email
-          password: cYJpURerWtd2ee6Zdf
+          server_address: sandbox.smtp.mailtrap.io
+          server_port: 25
+          username: 9a04faf7a140ac
+          password: aaa89780e67f54
           subject: '🚨 Fallo en monitor API de Chiquito'
           body: |
             El endpoint de health o el endpoint de chistes ha fallado en el entorno de producción.
             Código de estado del endpoint /health: ${{ steps.health.outputs.status_code }}
             Revisa el despliegue o la conectividad del sistema.
           to: tu-correo@ejemplo.com
-          from: 'Monitor API <brooklyn.feeney@ethereal.email>'
+          from: 'Monitor API <tu-correo@ejemplo.com>'
           secure: true
