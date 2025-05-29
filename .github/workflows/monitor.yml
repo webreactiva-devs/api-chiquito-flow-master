@@ -36,7 +36,10 @@ jobs:
           subject: '🚨 Fallo en monitor API de Chiquito'
           body: |
             El endpoint de health o el endpoint de chistes ha fallado en el entorno de producción.
-            Código de estado del endpoint /health: ${{ steps.health.outputs.status_code }}
+          
+            👉 Ver detalles del pipeline:
+            ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          
             Revisa el despliegue o la conectividad del sistema.
           to: tu-correo@ejemplo.com
           from: 'Monitor API <tu-correo@ejemplo.com>'
